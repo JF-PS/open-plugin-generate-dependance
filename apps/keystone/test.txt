@@ -1,0 +1,25 @@
+        "commands": [
+          "cd apps",
+          "cp keystone/Dockerfile . ",
+          "heroku container:login",
+          "heroku container:push web -a keystone-nx",
+          "heroku container:release web -a keystone-nx"
+        ]
+
+"commands": [
+    {
+        "command": "cd apps"
+    },
+    {
+        "command": "cp keystone/Dockerfile . "
+    },
+    {
+        "command": "heroku container:login"
+    },
+    {
+        "command": "heroku container:push web -a keystone-nx"
+    },
+    {
+        "command": "heroku container:release web -a keystone-nx"
+    },
+]

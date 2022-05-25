@@ -1,0 +1,60 @@
+{
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/keystone/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "cwd": "apps/keystone",
+        "command": "npx keystone build"
+      }
+    },
+    "build-plugin": {
+      "executor": "./dist/libs/my-plugin:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "apps/test/yollo/truc"
+      }
+    },
+
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "keystone:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "keystone:build:production"
+        }
+      }
+    },
+
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/keystone/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/keystone"],
+      "options": {
+        "jestConfig": "apps/keystone/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "cd apps && cp keystone/Dockerfile . && heroku container:login && heroku container:push web -a keystone-nx && heroku container:release web -a keystone-nx"
+        ]
+      }
+    }
+  }
+}

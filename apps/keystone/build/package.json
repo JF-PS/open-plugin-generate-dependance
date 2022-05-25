@@ -1,0 +1,14 @@
+{
+  "name": "keystone",
+  "version": "0.0.1",
+  "dependencies": {
+    "@keystone-6/core": "^1.0.1",
+    "lodash": "^4.17.21",
+    "next": "12.1.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "@keystone-6/fields-document": "^1.0.1",
+    "@keystone-6/auth": "^1.0.1"
+  },
+  "main": ""
+}
